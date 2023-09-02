@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{%block body%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background:#eee;
+}
+
+.size span {
+  font-size: 11px;
+}
+
+.color span {
+  font-size: 11px;
+}
+
+.product-deta {
+  margin-right: 70px;
+}
+
+.gift-card:focus {
+  box-shadow: none;
+}
+
+.pay-button {
+  color: #fff;
+}
+
+.pay-button:hover {
+  color: #fff;
+}
+
+.pay-button:focus {
+  color: #fff;
+  box-shadow: none;
+}
+
+.text-grey {
+  color: #a39f9f;
+}
+
+.qty i {
+  font-size: 11px;
+}
+    </style>
+</head>
+<body>
+<div class="container mt-5 mb-5">
+            <div class="d-flex justify-content-center row">
+                <div class="col-md-8">
+                    <div class="p-2">
+
+                        <h4 style="color:#d1c1c0 ;font-size:35px">Shopping cart</h4>
+                        <div class="d-flex flex-row align-items-center pull-right"><span class="mr-1" style="color:#d1c1c0 ;font-size:25;">Sort by:</span><span class="mr-1 font-weight-bold">Price</span><i class="fa fa-angle-down"></i></div>
+                    </div>
+                    ---------------
+                    {% for i in ci %}
+                    <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
+                        <a href="{{ i.prodt.get_url }}">
+                        <div class="mr-1"><img class="rounded" src="{{ i.prodt.img.url }}" style="color:grey;weight:90px; height:90px" width="70"></div>
+                        </a>
+                        <a href="{{ i.prodt.get_url }}" style="color:grey;">
+                            <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold"><b>{{i.prodt.name}}</b></span></div>
+                         </a><br>
+<!--                            <div class="d-flex flex-row product-desc">-->
+                                <div class="size mr-1"><span class="text-grey">Id:</span><span class="font-weight-bold">&nbsp;{{i.prodt.id}}</span></div><br>
+                                <div class="color"><span class="text-grey">Price:</span><span class="font-weight-bold">&nbsp;{{i.prodt.price}} x 1</span></div><br>
+                                <div class="color"><span class="text-grey">Qty:</span><span class="font-weight-bold">&nbsp;{{i.quty}}</span></div><br>
+
+                        <!--                            </div>-->
+                        </div>
+                        <div class="d-flex flex-row align-items-center qty">
+                            <h5 class="text-grey mt-1 mr-1 ml-1"><a href="{% url 'addcart' i.prodt.id %}" style="color:grey;"><i class="fa fa-plus" style="font-size:14px"></i></a> {{i.quty}} <a href="{% url 'dec_cart' i.prodt.id %}" style="color:grey;"><i class="fa fa-minus" style="font-size:14px"></i></a></h5> </div>
+                        <div>
+                            <h5 class="text-grey">Rs: {{i.total}}.00</h5>
+                        </div>
+                    <div class="d-flex align-items-center"><a href="{% url 'del_cart' i.prodt.id %}"><i class="fa fa-trash mb-1 text-danger"></i></a></div>
+                    </div>
+
+                    {% endfor%}
+                    ------------------
+                    <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
+                        <div class="mr-1"></div>
+                        <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold"></span>
+
+                        </div>
+                        <div class="d-flex flex-row align-items-center qty">
+                            <h5 class="text-grey mt-1 mr-1 ml-1">Amount Total</h5></div>
+                        <div>
+                            <h5 class="text-grey">Rs:{{t}}.00 </h5>
+                        </div>
+                        <div class="d-flex align-items-center"></div>
+                    </div><br><br>
+                    <button class="btn btn-warning btn-block btn-lg ml-2 pay-button" type="button" >Proceed to Pay</button>
+                </div>
+            </div>
+</div>
+            </div>
+        </div>
+</body>
+</html>
+{% endblock %}

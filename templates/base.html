@@ -1,0 +1,95 @@
+{% load static %}
+
+
+
+<html lang="" xmlns="http://www.w3.org/1999/html">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Home</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'in/layout/styles/layout.css'%}" rel="stylesheet" type="text/css" media="all">
+<style>
+  body {
+
+  background-color:#161716;
+}
+</style>
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+
+<div class="abc" style="background-image:url({% static 'in/images/demo/backgrounds/bg.jpeg' %});">
+<!--  height:100%;background-position:center;background-repeat:no-repeat;background-size:cover;-->
+<!--  &lt;!&ndash; ################################################################################################ &ndash;&gt;-->
+  <div class="wrapper row0">
+    <div id="topbar" class="hoc clear">
+
+      <div class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="nospace">
+          <li><a href='/'><i class="fas fa-home"></i></a></li>
+          <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
+          <li><a href="{% url 'cart' %}" title="Cart"><i class="fa fa-shopping-cart" style="font-size:10px">{{itc}}</i></a></li>
+          <li id="searchform">
+            <div>
+              <form action="{%  url 'search' %}" method="get">
+                {% csrf_token %}
+                <fieldset>
+                  <legend>Quick Search:</legend>
+                  <input type="text" placeholder="Enter iterm name to search&hellip;" name="q">
+                  <button type="submit"><i class="fas fa-search"></i></button>
+                </fieldset>
+              </form>
+            </div>
+          </li>
+        </ul>
+        <!-- ################################################################################################ -->
+      </div>
+    </div>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <div id="logo" class="fl_left">
+        <!-- ################################################################################################ -->
+        <h1><a href="/" style="color:#d1c1c0">avodha`</a></h1>
+        <!-- ################################################################################################ -->
+      </div>
+      <nav id="mainav" class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a class="drop" href="#">Pages</a>
+
+            <ul>
+              <li><a href="/">All product</a></li>
+              {% for i in ct %}
+              <li><a href="{{i.get_url}}">{{i.name}}</a></li>
+              {% endfor %}
+            </ul>
+
+            <li class="active"><a href="{% url 'cart' %}">Cart </a></li>
+          {% if user.is_authenticated %}
+          <li class="active"><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+          <li class="active"><a href="{% url 'accounts' %}">Sign Up </a></li>
+            <li class="active"><a href="{% url 'login' %}">Login </a></li>
+          {% endif %}
+
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+  {%block body%}
+  {%endblock%}
+</div>
+</div>
+</body>
+</html>

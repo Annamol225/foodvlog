@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block body%}
+
+
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Home</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'in/layout/styles/layout.css'%}" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+  <div id="pageintro" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <article>
+      <h3 class="heading">Quality food items</h3>
+      <p>register with us and have quality food items at your door stop.</p>
+    </article>
+    <!-- ################################################################################################ -->
+  </div>
+  <!-- ################################################################################################ -->
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+
+
+    <section id="introblocks">
+
+      <ul class="nospace group btmspace-80">
+
+<div class="float-container">
+  {% for i in prodt.object_list %}
+
+        <li class="one_third first">
+          <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="height:200px;"></a>
+            <figcaption>
+              <h6 class="heading">{{i.name}}</h6>
+              <p>{{i.dese|truncatewords:19}}</p>
+              <p>Rs:{{i.price}}</p>
+              <p>STOCK:{{i.stock}}</p>
+            </figcaption>
+          </figure>
+        </li>
+{% endfor %}
+</div>
+      </ul>
+    </section>
+      <div>
+    <div class="mx-auto">
+          <div class="text-center">
+  {% for p in prodt.paginator.page_range%}
+      <a href="?page={{p}}" class="btn btn-light btn-sm {% if prodt.number == p %} activate {% endif %}">{{p}}</a>
+      {%endfor%}
+    </div>
+    </div>
+     </div>
+  </main>
+</div>
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="{% static 'in/layout/scripts/jquery.min.js'%}"></script>
+<script src="{% static 'in/layout/scripts/jquery.backtotop.js'%}"></script>
+<script src="{% static 'in/layout/scripts/jquery.mobilemenu.js'%}"></script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{%block body%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+    <link href="{% static 'dl/fontawesome/css/all.min.css'%}" rel="stylesheet" />
+    <link href="{% static 'dl/css/templatemo-comparto.css'%}" rel="stylesheet" />
+    <title>Detail</title>
+<!--
+
+Comparto TemplateMo
+
+https://templatemo.com/tm-544-comparto
+
+-->
+</head>
+
+<body>
+    <!-- Back to top button -->
+    <a id="button"><i class="fas fa-angle-up fa-2x"></i></a>
+   <br><br><br>
+        <section class="tm-mb-1" id="about">
+            <div class="tm-row tm-about-row">
+                <div class="tm-section-2-l">
+                    <img src="{{prod.img.url}}" style="height:450px;weight:300px;" alt="About image" class="tm-img-responsive">
+                </div>
+                <article class="tm-section-1-r tm-bg-color-8">
+                    <h2 class="tm-mb-2 tm-title-color">{{prod.name}}</h2>
+                    <p>{{prod.dese}}<br><br>STOCK:{{prod.stock}}<br><br>price: RS.{{prod.price}}<br></p>
+
+
+
+
+                    <a href="{% url 'addcart' prod.id %}" class="tm-btn tm-btn-1 tm-link-to-services">ADD TO CART</a>
+                </article>
+            </div>
+        </section>
+
+</body>
+</html>
+{% endblock %}

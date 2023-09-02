@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block body%}
+
+
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Home</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'in/layout/styles/layout.css'%}" rel="stylesheet" type="text/css" media="all">
+  <style>
+    abc{
+    display: flex;
+     }
+  </style>
+</head>
+<body id="top">
+<br><br><br>
+    <section id="introblocks" style="">
+ <div style=" display: inline-block;">
+  {% for i in pro %}
+
+            <br>
+      <ul class="nospace group btmspace-80">
+        <li class="one_third first">
+          <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="height:200px;"></a>
+            <figcaption>
+              <h6 class="heading" style="color:#f5f7fa">{{i.name}}</h6>
+              <p style="color:#f5f7fa">{{i.dese|truncatewords:19}}</p>
+              <p style="color:#f5f7fa">Rs:{{i.price}}</p>
+              <p style="color:#f5f7fa">STOCK:{{i.stock}}</p>
+            </figcaption>
+          </figure>
+        </li>
+      </ul>
+
+{% endfor %}
+     <div>
+    </section>
+
+
+  </main>
+</div>
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="{% static 'in/layout/scripts/jquery.min.js'%}"></script>
+<script src="{% static 'in/layout/scripts/jquery.backtotop.js'%}"></script>
+<script src="{% static 'in/layout/scripts/jquery.mobilemenu.js'%}"></script>
+</body>
+</html>
+{% endblock %}
